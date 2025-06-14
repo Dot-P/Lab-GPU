@@ -1,0 +1,29 @@
+# uv 仮想環境（デフォルトは .venv）
+.venv/
+
+# Python 標準のキャッシュや中間ファイル
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# 編集エディタ用のファイル
+.vscode/
+.idea/
+*.swp
+
+# テスト実行の結果ファイル（任意）
+*.log
+.coverage
+htmlcov/
+
+# その他環境ファイル
+.env
+.env.local
+.envrc
+
+# Pythonパッケージのメタデータ（ビルド系）
+*.egg-info/
+dist/
+build/
