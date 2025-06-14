@@ -77,7 +77,16 @@ gpu-monitor/
 ├── parser.py             # nvidia-smi出力パース
 ├── notion_client.py      # Notion API操作
 ├── .env                  # 認証情報
+├── tests/                # テストコード
 └── requirements.txt      # 必要パッケージ
+```
+
+## 🧪 テスト
+
+本リポジトリには `pytest` を用いたユニットテストが含まれています。以下のコマンドで実行できます。
+
+```bash
+pytest -q
 ```
 
 ---
