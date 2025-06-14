@@ -42,3 +42,26 @@ def test_run_ssh_command_success():
     mock_client.load_system_host_keys.assert_called_once()
     mock_client.set_missing_host_key_policy.assert_called_once()
     mock_client.close.assert_called_once()
+
+
+def test_run_ssh_command_ls_gpu1():
+    mock_client = mock.MagicMock()
+    stdout_mock = mock.MagicMock()
+    stdout_mock.read.return_value = b"file1\nfile2\n"
+    stderr_mock = mock.MagicMock()
+    stderr_mock.read.return_value = b""
+    mock_client.exec_command.return_value = (None, stdout_mock, stderr_mock)
+
+    with mock.patch.object(paramiko, "SSHClient", return_value=mock_client):
+        result = run_ssh_command("GPU1", "ls")
+
+    assert result == "file1\nfile2\n"
+    mock_client.connect.assert_called_once_with(
+        hostname="GPU1",
+        timeout=5,
+        allow_agent=True,
+        look_for_keys=True,
+    )
+    mock_client.load_system_host_keys.assert_called_once()
+    mock_client.set_missing_host_key_policy.assert_called_once()
+    mock_client.close.assert_called_once()
