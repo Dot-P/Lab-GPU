@@ -77,6 +77,7 @@ gpu-monitor/
 ├── parser.py             # nvidia-smi出力パース
 ├── notion_client.py      # Notion API操作
 ├── .env                  # 認証情報
+├── tests/                # テストコード
 └── requirements.txt      # 必要パッケージ
 ```
 
