@@ -6,7 +6,7 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir
 sys.path.insert(0, project_root)
 
 from ssh_utils import run_ssh_command
-from gpu_parser import parse_gpu_process_mapping
+from gpu_parser import parse_gpu_process_mapping, get_username_by_pid
 
 
 def test_gpu_mapping_gpu1():
@@ -17,5 +17,11 @@ def test_gpu_mapping_gpu1():
     mapping = parse_gpu_process_mapping(index_out, apps_out)
     print("\n\n","="*5 + " GPU1 Mapping " + "="*5)
     print(mapping)
+    for pid in mapping.values():
+        if pid is None:
+            print("PID None -> username: None")
+        else:
+            user = get_username_by_pid(pid)
+            print(f"PID {pid} -> username: {user}")
     print("="*23)
     assert len(mapping) == 4

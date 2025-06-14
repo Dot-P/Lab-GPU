@@ -1,4 +1,6 @@
 from typing import Dict, Optional
+import subprocess
+
 
 
 def parse_gpu_process_mapping(gpu_query_out: str, apps_query_out: str) -> Dict[int, Optional[int]]:
@@ -55,3 +57,31 @@ def parse_gpu_process_mapping(gpu_query_out: str, apps_query_out: str) -> Dict[i
         mapping[idx] = uuid_to_pid.get(uuid)
 
     return mapping
+
+
+def get_username_by_pid(pid: int) -> Optional[str]:
+    """Return the username owning a process.
+
+    Parameters
+    ----------
+    pid : int
+        Target process ID.
+
+    Returns
+    -------
+    Optional[str]
+        Username of the process or ``None`` if it cannot be determined.
+    """
+
+    try:
+        result = subprocess.run(
+            ["ps", "-o", "user=", "-p", str(pid)],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except Exception:
+        return None
+
+    username = result.stdout.strip()
+    return username if username else None
