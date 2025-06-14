@@ -18,4 +18,4 @@ def test_gpu_mapping_gpu1():
     print("\n\n","="*5 + " GPU1 Mapping " + "="*5)
     print(mapping)
     print("="*23)
-    assert len(mapping) == 3
+    assert len(mapping) == 4
