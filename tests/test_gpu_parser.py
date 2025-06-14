@@ -21,7 +21,7 @@ def test_gpu_mapping_gpu1():
         if pid is None:
             print("PID None -> username: None")
         else:
-            user = get_username_by_pid(pid)
+            user = get_username_by_pid("GPU1", pid)
             print(f"PID {pid} -> username: {user}")
     print("="*23)
     assert len(mapping) == 4
