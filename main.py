@@ -4,7 +4,7 @@ from time import sleep
 
 
 def main():
-    machine_list = ["GPU201", "GPU2" ,"GPU202", "GPU1", "GPU4"]
+    machine_list = ["GPU1", "GPU2" ,"GPU3", "GPU4", "GPU5", "GPU6", "GPU7", "GPU200", "GPU201", "GPU202"]
 
     for machine in machine_list:
         print(f"\n{'=' * 10} {machine} {'=' * 10}")
