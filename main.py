@@ -3,17 +3,15 @@ from gpu_parser import parse_gpu_process_mapping, get_username_by_pid
 from time import sleep
 
 def main():
-    machine_list = ["GPU1", "GPU2", "GPU3", "GPU4", "GPU5", "GPU6", "GPU7"]
-    # machine_list = ["GPU1", "GPU2", "GPU3", "GPU4", "GPU5", "GPU6", "GPU7", "GPU200", "GPU201", "GPU202"]
+    machine_list = ["GPU201", "GPU2" ,"GPU202", "GPU1", "GPU4"]
 
     for machine in machine_list:
         print(f"\n{'=' * 10} {machine} {'=' * 10}")
-
+        sleep(1)
         try:
             # 1. GPU index と UUID の対応
             gpu_cmd = "nvidia-smi --query-gpu=index,uuid --format=csv,noheader"
             index_output = run_ssh_command(machine, gpu_cmd)
-            sleep(1)
 
             # 2. UUID と PID の対応
             apps_cmd = "nvidia-smi --query-compute-apps=gpu_uuid,pid --format=csv,noheader"
