@@ -1,7 +1,7 @@
 from typing import Dict, Optional
 import subprocess
 
-from ssh_utils import run_ssh_command
+from ssh_utils import run_ssh_command, SSHSession
 
 def parse_gpu_process_mapping(gpu_query_out: str, apps_query_out: str) -> Dict[int, Optional[int]]:
     """Parse nvidia-smi outputs and map GPU index to PID.
@@ -59,7 +59,7 @@ def parse_gpu_process_mapping(gpu_query_out: str, apps_query_out: str) -> Dict[i
     return mapping
 
 
-def get_username_by_pid(host: str, pid: int) -> Optional[str]:
+def get_username_by_pid(host: str, pid: int, session: SSHSession | None = None) -> Optional[str]:
     """Return the username owning a process.
 
     Parameters
@@ -76,7 +76,10 @@ def get_username_by_pid(host: str, pid: int) -> Optional[str]:
     """
     try:
         cmd = f"ps -o user= -p {pid}"
-        result = run_ssh_command(host, cmd)
+        if session is not None:
+            result = session.run(cmd)
+        else:
+            result = run_ssh_command(host, cmd)
         return result.strip() if result.strip() else None
     except Exception:
         return None
