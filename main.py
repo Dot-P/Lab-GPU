@@ -2,6 +2,7 @@ from ssh_utils import run_ssh_command
 from gpu_parser import parse_gpu_process_mapping, get_username_by_pid
 from time import sleep
 
+
 def main():
     machine_list = ["GPU201", "GPU2" ,"GPU202", "GPU1", "GPU4"]
 
