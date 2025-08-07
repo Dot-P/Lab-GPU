@@ -48,10 +48,10 @@ class NotionClient:
         props = {
             "マシン名": {"title": [{"text": {"content": machine}}]},
             "GPU番号": {"number": gpu_index},
-            "状態": {"rich_text": [{"text": {"content": state}}]},
+            "状態": {"select": {"name": state}},
             "使用ユーザー": {"rich_text": [{"text": {"content": user}}]},
             "最終更新時刻": {"rich_text": [{"text": {"content": timestamp}}]},
-            "ステータス": {"rich_text": [{"text": {"content": status}}]},
+            "ステータス": {"select": {"name": status}},
         }
         if page_id:
             url = f"https://api.notion.com/v1/pages/{page_id}"
