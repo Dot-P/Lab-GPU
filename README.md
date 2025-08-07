@@ -53,7 +53,7 @@ NOTION_DATABASE_ID=xxxxxxxxxxxx
 ### 4. スクリプトの実行
 
 ```bash
-python main.py
+python notion.py
 ```
 
 ---
@@ -63,7 +63,7 @@ python main.py
 1分ごとに監視したい場合、以下のように `crontab -e` に追記してください：
 
 ```cron
-* * * * * /usr/bin/python /path/to/main.py
+* * * * * /usr/bin/python /path/to/notion.py
 ```
 
 ---
@@ -72,10 +72,10 @@ python main.py
 
 ```plaintext
 gpu-monitor/
-├── main.py               # 実行スクリプト
+├── main.py               # コンソール出力用スクリプト
+├── notion.py             # Notion更新スクリプト
 ├── ssh_utils.py          # SSHでGPU情報取得
-├── parser.py             # nvidia-smi出力パース
-├── notion_client.py      # Notion API操作
+├── gpu_parser.py         # nvidia-smi出力パース
 ├── .env                  # 認証情報
 ├── tests/                # テストコード
 └── requirements.txt      # 必要パッケージ
